@@ -10,8 +10,6 @@ name: OpenWrt-CI
 on:
   schedule:
     - cron: 0 20 * * *
-  push:
-    branches: [master]
 
 permissions:
   contents: read
@@ -50,8 +48,8 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
-      # - name: Generate configuration file
-      #   run: make defconfig
+      - name: Generate configuration file
+        run: make defconfig
 
       - name: Download packages
         run: make download -j16
